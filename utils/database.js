@@ -13,3 +13,5 @@ function query(sql, callback) {
     });
   });
 }
+
+exports.query = query;
