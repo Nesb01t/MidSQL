@@ -3,4 +3,4 @@ let myname: string = "nihao";
 
 console.log(age);
 
-console.log(2);
+console.log(1);
