@@ -12,5 +12,6 @@ router.get("/", async (ctx) => {
 /* 二级路由列表 */
 router.use("/list", list.routes(), list.allowedMethods());
 router.use("/error", error.routes(), error.allowedMethods());
+router.use("/dblist", error.routes(), error.allowedMethods());
 
 module.exports = router;
