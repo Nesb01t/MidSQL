@@ -1,25 +1,25 @@
 module.exports = async (ctx, next) => {
-  let status = 0;
-  let fileName = "";
+  let statusCode = 0;
   try {
     await next();
-    status = ctx.status;
+    statusCode = ctx.status; // 获得结果错误码
   } catch (err) {
-    status = 500;
+    statusCode = 500;
   }
 
-  if (status >= 400) {
-    switch (status) {
+  let errorText = "[SUCCESS] 接口被正常调用";
+  if (statusCode >= 400) {
+    switch (statusCode) {
       case 400:
       case 404:
       case 500:
-        fileName = status;
+        errorText = "[ERROR] 错误码: " + statusCode;
         break;
       default:
-        fileName = "other";
+        errorText = "[ERROR] 遇到了不可预料的错误";
         break;
     }
   }
-  ctx.response.status = status;
-  console.log(fileName);
+  ctx.response.status = statusCode;
+  console.log(errorText);
 };
